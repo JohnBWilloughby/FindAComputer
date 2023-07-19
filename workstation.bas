@@ -1,9 +1,4 @@
 Attribute VB_Name = "Module1"
-Global usr_id           As String           ' the user id for the database
-Global pass             As String           ' the password if used in your database
-Global mySqlIP          As String           'the ip address of the machine with the mySql
-Global strDataBaseName  As String
-
 Global ProxyPC          As Variant
 Global PCOffice         As String
 Global strSearch        As String
@@ -31,9 +26,9 @@ Dim itmx As ListItem
 
 
 On Error GoTo ErrRoutine
-        ' New York -- Workstatoins and Laptops
+        ' NY -- Desktops and Laptops
         PCOffice = "NY"
-        Set LDAPQuery = GetObject("LDAP://herzfeld-rubin.com.int/OU=workstations,OU=New York,DC=herzfeld-rubin,DC=com,DC=int")
+        Set LDAPQuery = GetObject("LDAP://avh.com/OU=avh,OU=OfficesWin10,OU=NY,OU=Computers,OU=Desktops,DC=avh,DC=com")
         LDAPQuery.Filter = Array(ADFilter)
         For Each ADObject In LDAPQuery
             If InStr(LCase(ADObject.Description), strSearch) Then
@@ -48,71 +43,7 @@ On Error GoTo ErrRoutine
             End If
         Next
         
-        Set LDAPQuery = GetObject("LDAP://herzfeld-rubin.com.int/OU=Laptops,OU=New York,DC=herzfeld-rubin,DC=com,DC=int")
-        LDAPQuery.Filter = Array(ADFilter)
-        For Each ADObject In LDAPQuery
-            If InStr(LCase(ADObject.Description), strSearch) Then
-                pcName = Mid(ADObject.Name, 4)
-                DisplayUName = ADObject.Description
-                Call HostToIP
-                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
-                itmx.SubItems(1) = IPFromHost
-                itmx.SubItems(2) = DisplayUName
-                itmx.SubItems(3) = PCOffice
-                Form1.Refresh
-            End If
-        Next
-        
-        ' New Jersey -- Workstatoins and Laptops
-        PCOffice = "NJ"
-        Set LDAPQuery = GetObject("LDAP://herzfeld-rubin.com.int/OU=workstations,OU=New Jersey,DC=herzfeld-rubin,DC=com,DC=int")
-        LDAPQuery.Filter = Array(ADFilter)
-        For Each ADObject In LDAPQuery
-            If InStr(LCase(ADObject.Description), strSearch) Then
-                pcName = Mid(ADObject.Name, 4)
-                DisplayUName = ADObject.Description
-                Call HostToIP
-                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
-                itmx.SubItems(1) = IPFromHost
-                itmx.SubItems(2) = DisplayUName
-                itmx.SubItems(3) = PCOffice
-                Form1.Refresh
-            End If
-        Next
-     
-        Set LDAPQuery = GetObject("LDAP://herzfeld-rubin.com.int/OU=Laptops,OU=New Jersey,DC=herzfeld-rubin,DC=com,DC=int")
-        LDAPQuery.Filter = Array(ADFilter)
-        For Each ADObject In LDAPQuery
-            If InStr(LCase(ADObject.Description), strSearch) Then
-                pcName = Mid(ADObject.Name, 4)
-                DisplayUName = ADObject.Description
-                Call HostToIP
-                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
-                itmx.SubItems(1) = IPFromHost
-                itmx.SubItems(2) = DisplayUName
-                itmx.SubItems(3) = PCOffice
-                Form1.Refresh
-            End If
-        Next
-        
-        ' Long Island -- Workstatoins and Laptops
-        PCOffice = "LI"
-        Set LDAPQuery = GetObject("LDAP://herzfeld-rubin.com.int/OU=workstations,OU=Long Island,DC=herzfeld-rubin,DC=com,DC=int")
-        LDAPQuery.Filter = Array(ADFilter)
-        For Each ADObject In LDAPQuery
-            If InStr(LCase(ADObject.Description), strSearch) Then
-                pcName = Mid(ADObject.Name, 4)
-                DisplayUName = ADObject.Description
-                Call HostToIP
-                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
-                itmx.SubItems(1) = IPFromHost
-                itmx.SubItems(2) = DisplayUName
-                itmx.SubItems(3) = PCOffice
-                Form1.Refresh
-            End If
-        Next
-                
-        Set LDAPQuery = GetObject("LDAP://herzfeld-rubin.com.int/OU=Laptops,OU=Long Island,DC=herzfeld-rubin,DC=com,DC=int")
+        Set LDAPQuery = GetObject("LDAP://avh.com/OU=avh,OU=OfficesWin10,OU=NY,OU=Computers,OU=Laptops,DC=avh,DC=com")
         LDAPQuery.Filter = Array(ADFilter)
         For Each ADObject In LDAPQuery
             If InStr(LCase(ADObject.Description), strSearch) Then
@@ -128,6 +59,108 @@ On Error GoTo ErrRoutine
         Next
         
         
+        
+       ' CT  -- Computers and Laptops
+'        PCOffice = "CT"
+'        Set LDAPQuery = GetObject("LDAP://avh.com/OU=avh,OU=OfficesWin10,OU=NY,OU=Computers,OU=Desktops,DC=avh,DC=com")
+'        LDAPQuery.Filter = Array(ADFilter)
+'        For Each ADObject In LDAPQuery
+'            If InStr(LCase(ADObject.Description), strSearch) Then
+'                pcName = Mid(ADObject.Name, 4)
+'                DisplayUName = ADObject.Description
+'                Call HostToIP
+'                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
+'                itmx.SubItems(1) = IPFromHost
+'                itmx.SubItems(2) = DisplayUName
+'                itmx.SubItems(3) = PCOffice
+'                Form1.Refresh
+'            End If
+'        Next
+'
+'        Set LDAPQuery = GetObject("LDAP://avh.com/OU=avh,OU=OfficesWin10,OU=NY,OU=Computers,OU=Desktops,DC=avh,DC=com")
+'        LDAPQuery.Filter = Array(ADFilter)
+'        For Each ADObject In LDAPQuery
+'            If InStr(LCase(ADObject.Description), strSearch) Then
+'                pcName = Mid(ADObject.Name, 4)
+'                DisplayUName = ADObject.Description
+'                Call HostToIP
+'                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
+'                itmx.SubItems(1) = IPFromHost
+'                itmx.SubItems(2) = DisplayUName
+'                itmx.SubItems(3) = PCOffice
+'                Form1.Refresh
+'            End If
+'        Next
+'
+       ' DC -- Computers and Laptops
+'        PCOffice = "DC"
+'        Set LDAPQuery = GetObject("LDAP://avh.com/OU=avh,OU=OfficesWin10,OU=NY,OU=Computers,OU=Desktops,DC=avh,DC=com")
+'        LDAPQuery.Filter = Array(ADFilter)
+'        For Each ADObject In LDAPQuery
+'            If InStr(LCase(ADObject.Description), strSearch) Then
+'                pcName = Mid(ADObject.Name, 4)
+'                DisplayUName = ADObject.Description
+'                Call HostToIP
+'                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
+'                itmx.SubItems(1) = IPFromHost
+'                itmx.SubItems(2) = DisplayUName
+'                itmx.SubItems(3) = PCOffice
+'                Form1.Refresh
+'            End If
+'        Next
+'
+'        Set LDAPQuery = GetObject("LDAP://avh.com/OU=avh,OU=OfficesWin10,OU=NY,OU=Computers,OU=Desktops,DC=avh,DC=com")
+'        LDAPQuery.Filter = Array(ADFilter)
+'        For Each ADObject In LDAPQuery
+'            If InStr(LCase(ADObject.Description), strSearch) Then
+'                pcName = Mid(ADObject.Name, 4)
+'                DisplayUName = ADObject.Description
+'                Call HostToIP
+'                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
+'                itmx.SubItems(1) = IPFromHost
+'                itmx.SubItems(2) = DisplayUName
+'                itmx.SubItems(3) = PCOffice
+'                Form1.Refresh
+'            End If
+'        Next
+'
+'
+       ' SF -- Computers and Laptops
+'        PCOffice = "SF"
+'        Set LDAPQuery = GetObject("LDAP://avh.com/OU=avh,OU=OfficesWin10,OU=NY,OU=Computers,OU=Desktops,DC=avh,DC=com")
+'        LDAPQuery.Filter = Array(ADFilter)
+'        For Each ADObject In LDAPQuery
+'            If InStr(LCase(ADObject.Description), strSearch) Then
+'                pcName = Mid(ADObject.Name, 4)
+'                DisplayUName = ADObject.Description
+'                Call HostToIP
+'                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
+'                itmx.SubItems(1) = IPFromHost
+'                itmx.SubItems(2) = DisplayUName
+'                itmx.SubItems(3) = PCOffice
+'                Form1.Refresh
+'            End If
+'        Next
+'
+'        Set LDAPQuery = GetObject("LDAP://avh.com/OU=avh,OU=OfficesWin10,OU=NY,OU=Computers,OU=Desktops,DC=avh,DC=com")
+'        LDAPQuery.Filter = Array(ADFilter)
+'        For Each ADObject In LDAPQuery
+'            If InStr(LCase(ADObject.Description), strSearch) Then
+'                pcName = Mid(ADObject.Name, 4)
+'                DisplayUName = ADObject.Description
+'                Call HostToIP
+'                Set itmx = Form1.ListView1.ListItems.Add(, , pcName)
+'                itmx.SubItems(1) = IPFromHost
+'                itmx.SubItems(2) = DisplayUName
+'                itmx.SubItems(3) = PCOffice
+'                Form1.Refresh
+'            End If
+'        Next
+'
+'
+
+
+
 ErrRoutine:
 apErNum = Err.Number
 Select Case apErrNum
