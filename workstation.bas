@@ -77,7 +77,7 @@ On Error GoTo ErrRoutine
             End If
         Next
 
-        Set LDAPQuery = GetObject("LDAP://avh.com/OU=Desktops,OU=Computers,OU=CT,OU=OfficesWin10,OU=avh,DC=avh,DC=com")
+        Set LDAPQuery = GetObject("LDAP://avh.com/OU=Laptops,OU=Computers,OU=CT,OU=OfficesWin10,OU=avh,DC=avh,DC=com")
         LDAPQuery.Filter = Array(ADFilter)
         For Each ADObject In LDAPQuery
             If InStr(LCase(ADObject.Description), strSearch) Then
@@ -109,7 +109,7 @@ On Error GoTo ErrRoutine
             End If
         Next
 
-        Set LDAPQuery = GetObject("LDAP://avh.com/OU=Desktops,OU=Computers,OU=DC,OU=OfficesWin10,OU=avh,DC=avh,DC=com")
+        Set LDAPQuery = GetObject("LDAP://avh.com/OU=Laptops,OU=Computers,OU=DC,OU=OfficesWin10,OU=avh,DC=avh,DC=com")
         LDAPQuery.Filter = Array(ADFilter)
         For Each ADObject In LDAPQuery
             If InStr(LCase(ADObject.Description), strSearch) Then
@@ -142,7 +142,7 @@ On Error GoTo ErrRoutine
             End If
         Next
 
-        Set LDAPQuery = GetObject("LDAP://avh.com/OU=Desktops,OU=Computers,OU=SF,OU=OfficesWin10,OU=avh,DC=avh,DC=com")
+        Set LDAPQuery = GetObject("LDAP://avh.com/OU=Laptops,OU=Computers,OU=SF,OU=OfficesWin10,OU=avh,DC=avh,DC=com")
         LDAPQuery.Filter = Array(ADFilter)
        For Each ADObject In LDAPQuery
             If InStr(LCase(ADObject.Description), strSearch) Then
